@@ -90,6 +90,11 @@ class AudioDecoderSource() : AudioSource() {
             mEncoding = AudioFormat.ENCODING_PCM_16BIT
         }
 
+        if (format.containsKey(MediaFormat.KEY_ENCODER_DELAY)) {
+            val encoderDelay = format.getInteger(MediaFormat.KEY_ENCODER_DELAY)
+            inputFormat!!.setInteger(MediaFormat.KEY_ENCODER_DELAY, encoderDelay)
+        }
+
         //inputFormat!!.setByteBuffer("csd-1", ByteBuffer.wrap(byteArrayOf(0, 0, 0, 1, 104, -18,
         //    60, -128)));
         //MediaCodec.createDecoderByType(format.getString(MediaFormat.KEY_MIME)!!)
